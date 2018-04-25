@@ -22,7 +22,9 @@ public class TaskController {
 
     @RequestMapping(method=RequestMethod.GET, value="getTasks")
     public List<TaskDto> getTasks() {
+        //System.out.println("test");
         return taskMapper.mapToTaskDtoList(service.getAllTasks());
+        //return new ArrayList<>();
     }
 
     @RequestMapping(method=RequestMethod.GET, value="getTask")
