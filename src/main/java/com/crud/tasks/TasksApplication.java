@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 
 @SpringBootApplication
-//@ComponentScan("com.crud.tasks.repository")
 @EntityScan("com.crud.tasks.domain")
 @EnableJpaRepositories(basePackageClasses = TaskRepository.class)
 public class TasksApplication {
