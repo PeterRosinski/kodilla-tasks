@@ -39,9 +39,9 @@ public class TrelloClient {
                 .queryParam("fields", "name,id").build().encode().toUri();
     }
 
-    public List<TrelloBoardDto> getTrelloBoards() throws TrelloBoardNotFoundException {
+    public List<TrelloBoardDto> getTrelloBoards() {//throws TrelloBoardNotFoundException {
 
-        return Optional.ofNullable(Arrays.asList(restTemplate.getForObject(buildUrl(), TrelloBoardDto[].class))).orElseThrow(TrelloBoardNotFoundException::new);
+        return Optional.ofNullable(Arrays.asList(restTemplate.getForObject(buildUrl(), TrelloBoardDto[].class))).orElse(new ArrayList<>()); //.orElseThrow(TrelloBoardNotFoundException::new);
 
     }
 }
