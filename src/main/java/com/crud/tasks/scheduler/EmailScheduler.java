@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class EmailScheduler {
 
@@ -26,7 +28,8 @@ public class EmailScheduler {
     @Scheduled(fixedDelay = 20000)
     public void sendInformationEmail() {
         long size = taskRepository.count();
-        simpleEmailService.send(new Mail(adminConfig.getAdminMail(),null,SUBJECT,"Currently in database you got: " + size + " tasks"));
+        simpleEmailService.send(new Mail(adminConfig.getAdminMail(),null,SUBJECT,
+                "Currently in database you got: " + Optional.of(size).filter(s->s==(long)1).map(s->s + " task.").orElse(size + " tasks.")));
     }
 
 }
