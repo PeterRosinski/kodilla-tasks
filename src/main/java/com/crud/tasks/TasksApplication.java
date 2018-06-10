@@ -15,7 +15,7 @@ import org.springframework.stereotype.Controller;
 
 @SpringBootApplication
 @EntityScan("com.crud.tasks.domain")
-@EnableJpaRepositories(basePackageClasses = TaskRepository.class)
+//@EnableJpaRepositories(basePackageClasses = TaskRepository.class)
 //public class TasksApplication extends SpringBootServletInitializer {
 public class TasksApplication {
 
