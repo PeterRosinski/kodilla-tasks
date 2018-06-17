@@ -45,4 +45,29 @@ public class MailCreatorService {
         context.setVariable("application_functionality", functionality);
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
+
+    public String buildEveryDayEmail(String message) {
+
+        Context context = new Context();
+        context.setVariable("message", message);
+        context.setVariable("tasks_url", "http://localhost:8888/tasks_frontend/index.html");
+        context.setVariable("button", "Visit website");
+        context.setVariable("companyName", companyConfig.getCompanyName());
+        context.setVariable("companyDescription", companyConfig.getCompanyDescription());
+        return templateEngine.process("mail/every-day-mail", context);
+
+    }
+
+    public String buildEmail(String message, String typeOfEmail) {
+
+        switch (typeOfEmail) {
+            case EmailType.EVERYDAY_EMAIL:
+                return buildEveryDayEmail(message);
+            case EmailType.TRELLOCARD_EMAIL:
+                return buildTrelloCardEmail(message);
+            default:
+                return null;
+        }
+    }
+
 }
