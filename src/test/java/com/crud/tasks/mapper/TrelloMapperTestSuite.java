@@ -29,8 +29,8 @@ public class TrelloMapperTestSuite {
         trelloList1.add(new TrelloListDto("id1","list1",true));
         trelloList1.add(new TrelloListDto("id2", "list2", false));
         trelloList2.add(new TrelloListDto("id3", "list3", true));
-        trelloBoardDto.add(new TrelloBoardDto("board1", "id1", trelloList1));
-        trelloBoardDto.add(new TrelloBoardDto("board2", "id2", trelloList2));
+        trelloBoardDto.add(new TrelloBoardDto("id1","board1",  trelloList1));
+        trelloBoardDto.add(new TrelloBoardDto("id2","board2",  trelloList2));
         //When
         List<TrelloBoard> trelloBoard = trelloMapper.mapToBoards(trelloBoardDto);
         //Then
@@ -48,8 +48,8 @@ public class TrelloMapperTestSuite {
         trelloList1.add(new TrelloList("id1","list1",true));
         trelloList1.add(new TrelloList("id2", "list2", false));
         trelloList2.add(new TrelloList("id3", "list3", true));
-        trelloBoard.add(new TrelloBoard("board1", "id1", trelloList1));
-        trelloBoard.add(new TrelloBoard("board2", "id2", trelloList2));
+        trelloBoard.add(new TrelloBoard("id1","board1",  trelloList1));
+        trelloBoard.add(new TrelloBoard("id2","board2",  trelloList2));
         //When
         List<TrelloBoardDto> trelloBoardDto = trelloMapper.mapToBoardsDto(trelloBoard);
         //Then

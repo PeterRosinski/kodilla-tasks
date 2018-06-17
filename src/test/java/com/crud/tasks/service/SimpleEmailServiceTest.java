@@ -6,12 +6,13 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
+
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SimpleEmailServiceTest {
@@ -27,16 +28,11 @@ public class SimpleEmailServiceTest {
         //Given
         Mail mail = new Mail("test@test.com",null, "Test", "Test message");
 
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(mail.getMailTo());
-        mailMessage.setSubject(mail.getSubject());
-        mailMessage.setText(mail.getMessage());
-
         //When
-        simpleEmailService.send(mail);
+        simpleEmailService.send(mail,EmailType.EVERYDAY_EMAIL);
 
         //Then
-        verify(javaMailSender,times(1)).send(mailMessage);
+        verify(javaMailSender,times(1)).send(any(MimeMessagePreparator.class));
     }
 
     @Test
@@ -44,17 +40,11 @@ public class SimpleEmailServiceTest {
         //Given
         Mail mail = new Mail("test@test.com","testCC@test.com", "Test", "Test message");
 
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(mail.getMailTo());
-        mailMessage.setCc(mail.getToCc());
-        mailMessage.setSubject(mail.getSubject());
-        mailMessage.setText(mail.getMessage());
-
         //When
-        simpleEmailService.send(mail);
+        simpleEmailService.send(mail,EmailType.EVERYDAY_EMAIL);
 
         //Then
-        verify(javaMailSender,times(1)).send(mailMessage);
+        verify(javaMailSender,times(1)).send(any(MimeMessagePreparator.class));
     }
 
 }

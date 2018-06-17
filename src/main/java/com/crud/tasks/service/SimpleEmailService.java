@@ -33,7 +33,7 @@ public class SimpleEmailService {
         }
     }
 
-    private MimeMessagePreparator createMimeMessage(final Mail mail, String typeOfEmail) {
+    public MimeMessagePreparator createMimeMessage(final Mail mail, String typeOfEmail) {
         return mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setTo(mail.getMailTo());
